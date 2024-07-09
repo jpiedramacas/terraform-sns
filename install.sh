@@ -9,7 +9,7 @@ sudo chkconfig httpd on
 cd /var/www/html
 
 # Instala PHP y extensiones necesarias
-sudo yum install php php-cli php-json php-mbstring -y
+sudo yum install php php-cli php-json php-mbstring php-fpm -y
 
 # Instala Composer
 sudo php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -19,6 +19,8 @@ sudo php -r "unlink('composer-setup.php');"
 # Instala AWS SDK para PHP usando Composer
 sudo COMPOSER_ALLOW_SUPERUSER=1 php composer.phar require aws/aws-sdk-php
 
-# Reinicia Apache
+# Reinicia Apache y PHP-FPM
 sudo systemctl restart httpd
+sudo systemctl enable httpd
 sudo systemctl restart php-fpm
+sudo systemctl enable php-fpm
