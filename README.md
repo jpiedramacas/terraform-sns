@@ -1,10 +1,11 @@
 
+
 ## 1. Configuración Manual
 
 ### a. Asociar Políticas al Rol `LabRole` en IAM
 
 1. **Inicie sesión en la consola de AWS**:
-   - Acceda a la [consola de administración de AWS](https://aws.amazon.com/console/).
+   - Acceda a la consola de administración de AWS
 
 2. **Navegue a IAM (Identity and Access Management)**:
    - En la barra de búsqueda, escriba `IAM` y seleccione IAM para acceder a su consola.
@@ -24,7 +25,7 @@
 ### b. Añadir Rol a la Instancia EC2
 
 1. **Inicie sesión en la consola de AWS**:
-   - Acceda a la [consola de administración de AWS](https://aws.amazon.com/console/).
+   - Acceda a la consola de administración de AWS
 
 2. **Navegue a la consola EC2**:
    - En la barra de búsqueda, escriba `EC2` y seleccione EC2 para acceder a su consola.
@@ -37,25 +38,21 @@
    - En el menú desplegable `IAM role`, seleccione `LabRole`.
    - Haga clic en el botón `Update IAM role` para aplicar el cambio.
 
-### c. Configurar SNS y Lambda
+### c. Configurar ARN en `submit.php` y URL en `lambda_function.py`
 
-1. **Crear un tópico SNS**:
-   - Navegue a la consola de SNS en AWS.
-   - Haga clic en `Create topic` y siga las instrucciones para crear un nuevo tópico. Anote el ARN del tópico creado.
-
-2. **Actualizar `submit.php` con el ARN del tópico SNS**:
+1. **Actualizar `submit.php` con el ARN del tópico SNS**:
    - Abra `submit.php` en su editor de texto preferido.
    - Encuentre la línea donde se define `$snsTopicArn` y reemplácela con el ARN de su tópico SNS:
      ```php
      $snsTopicArn = 'arn:aws:sns:us-west-2:123456789012:MyTopic';
      ```
 
-3. **Actualizar `lambda_function.py` con la URL del webhook de Slack**:
+2. **Actualizar `lambda_function.py` con la URL del webhook de Slack**:
    - Abra `lambda_function.py` en su editor de texto preferido.
    - Encuentre la línea donde se define la URL y reemplácela con la URL de su webhook de Slack:
      ```python
      def lambda_handler(event, context):
-         url = "https://hooks.slack.com/services/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"
+         url = "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
      ```
 
 ## 3. Estructura de Archivos
